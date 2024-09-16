@@ -24,17 +24,36 @@ public class ServiceBook implements BookServiceInterface {
     @Override
     public void removeBook(Integer id) {
         Book bookRemove = null;
-        for (Book book : inventary){
-            if (Objects.equals(book.getId(), id)){
+        for (Book book : inventary) {
+            if (Objects.equals(book.getId(), id)) {
                 bookRemove = book;
                 break;
             }
         }
-        if (bookRemove!=null){
+        if (bookRemove != null) {
             inventary.remove(bookRemove);
-            System.out.println("El libro fue ");
+            System.out.println("El libro fue removido con exito");
+        } else {
+            System.out.println("No se encuentra el Libro en el inventario ");
         }
 
+    }
+
+    @Override
+    public void updateBook(Integer id, Double price) {
+        for (Book book : inventary) {
+            if (Objects.equals(book.getId(), id)) {
+                int index = inventary.indexOf(book);
+                inventary.set(index, book);
+                System.out.println("El precio del Libro" + id);
+            }
+        }
+        System.out.println("No se encuentra el Libro");
+    }
+
+    @Override
+    public List<Book> showAll() {
+        return inventary;
     }
 
 
